@@ -1,7 +1,7 @@
 const Add = () => {
     return (
         <div>
-
+            add form
         </div>
     );
 };
