@@ -1,9 +1,9 @@
 import './App.css'
 import {NavLink, Route, Routes} from "react-router-dom";
-import Add from "./components/Add.tsx";
-import Home from "./components/Home.tsx";
-import About from "./components/About.tsx";
-import Contact from "./components/Contact.tsx";
+import Add from "./container/Add.tsx";
+import Home from "./container/Home.tsx";
+import About from "./container/About.tsx";
+import Contact from "./container/Contact.tsx";
 const App = () => {
     return (
         <div>
