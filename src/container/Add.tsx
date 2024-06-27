@@ -7,6 +7,7 @@ import axiosApi from "../axios/AxiosAPI.tsx";
 interface Data {
     title: string;
     editorContent: string;
+    date: string;
 }
 
 const Add = () => {
@@ -14,6 +15,7 @@ const Add = () => {
     const [PostData, setPostData] = useState<Data>({
         title: '',
         editorContent: '',
+        date: '',
     });
     const navigate = useNavigate();
 
@@ -31,13 +33,24 @@ const Add = () => {
 
     const onFormSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
+        const currentDate = new Date().toLocaleDateString();
+
+        const postToSubmit = {
+            ...PostData,
+            date: currentDate
+        };
+        console.log(PostData)
+        console.log(currentDate)
+
         try {
-            await axiosApi.post('/posts.json', PostData);
+
+            await axiosApi.post('/posts.json', postToSubmit);
         } finally {
             navigate('/');
             setPostData({
                 title: '',
                 editorContent: '',
+                date: '',
             })
         }
     };

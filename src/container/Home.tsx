@@ -4,6 +4,7 @@ import {Card, CardContent, Container, Typography} from "@mui/material";
 interface Post {
     editorContent: string;
     title: string;
+    date: string;
 }
 
 interface PostsResponse {
@@ -27,10 +28,12 @@ const Home = () => {
                     Object.entries(dataDB).map(([key, post]) => (
                         <Card key={key} sx={{ maxWidth: 345, borderRadius: '10px', marginTop: '20px'}}>
                             <CardContent>
-                                <Typography gutterBottom variant="h5" component="div">
+                                <Typography gutterBottom component="div" fontSize={'13px'} color={'grey'}>
+                                    Created on: {post.date}
+                                </Typography>
+                                <Typography gutterBottom variant="h4" component="div">
                                     {post.title}
                                 </Typography>
-                                <Typography variant="body2" color="text.secondary" dangerouslySetInnerHTML={{ __html: post.editorContent }} />
                             </CardContent>
                         </Card>
                     ))
