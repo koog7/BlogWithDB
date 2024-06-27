@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import axiosApi from "../axios/AxiosAPI.tsx";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {Button, Card, CardContent, Container, Typography} from "@mui/material";
 
 interface Post {
@@ -12,7 +12,7 @@ interface Post {
 const ReadMore = () => {
     const {id} = useParams();
     const [dataDB , setDataDB] = useState<Post >()
-
+    const navigate = useNavigate();
 
     useEffect(() => {
         axiosApi.get<Post >(`/posts/${id}.json`)
@@ -22,6 +22,14 @@ const ReadMore = () => {
     }, [id]);
     console.log(dataDB)
     console.log(id)
+    
+    const deletePost = async () => {
+        try {
+            await axiosApi.delete(`/posts/${id}.json`);
+        } finally {
+            navigate('/');
+        }
+    }
     return (
         <Container>
             {dataDB && (
@@ -40,7 +48,7 @@ const ReadMore = () => {
                         />
                     </CardContent>
                     <Button variant="contained" sx={{marginRight: '10px'}}>Edit</Button>
-                    <Button variant="outlined">Delete!</Button>
+                    <Button variant="outlined" onClick={deletePost}>Delete!</Button>
                 </Card>
             )}
         </Container>
