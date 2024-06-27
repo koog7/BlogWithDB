@@ -1,6 +1,7 @@
 import axiosApi from "../axios/AxiosAPI.tsx";
 import {useEffect, useState} from "react";
 import {Card, CardContent, Container, Typography} from "@mui/material";
+import {NavLink} from "react-router-dom";
 interface Post {
     editorContent: string;
     title: string;
@@ -26,7 +27,7 @@ const Home = () => {
         <Container>
                 {dataDB ? (
                     Object.entries(dataDB).map(([key, post]) => (
-                        <Card key={key} sx={{ maxWidth: 345, borderRadius: '10px', marginTop: '20px'}}>
+                        <Card key={key} sx={{ maxWidth: 600, borderRadius: '10px', margin: '20px auto'}}>
                             <CardContent>
                                 <Typography gutterBottom component="div" fontSize={'13px'} color={'grey'}>
                                     Created on: {post.date}
@@ -34,6 +35,7 @@ const Home = () => {
                                 <Typography gutterBottom variant="h4" component="div">
                                     {post.title}
                                 </Typography>
+                                <NavLink className={'readMore'} to={`/posts/${key}`}>Read more</NavLink>
                             </CardContent>
                         </Card>
                     ))

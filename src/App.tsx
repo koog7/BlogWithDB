@@ -4,6 +4,7 @@ import Add from "./container/Add.tsx";
 import Home from "./container/Home.tsx";
 import About from "./container/About.tsx";
 import Contact from "./container/Contact.tsx";
+import ReadMore from "./container/ReadMore.tsx";
 const App = () => {
     return (
         <div>
@@ -29,6 +30,9 @@ const App = () => {
                     )}/>
                     <Route path="/contacts" element={(
                         <Contact/>
+                    )}/>
+                    <Route path="/posts/:id" element={(
+                        <ReadMore/>
                     )}/>
                 </Routes>
             </div>
