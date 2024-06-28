@@ -11,14 +11,14 @@ interface Post {
 
 const ReadMore = () => {
     const {id} = useParams();
-    const [dataDB , setDataDB] = useState<Post>()
+    const [dataDB , setDataDB] = useState<Post>();
     const navigate = useNavigate();
 
     useEffect(() => {
         axiosApi.get<Post >(`/posts/${id}.json`)
             .then(response => {
                 setDataDB(response.data);
-            })
+            });
     }, [id]);
 
     const deletePost = async () => {
@@ -27,10 +27,10 @@ const ReadMore = () => {
         } finally {
             navigate('/');
         }
-    }
+    };
     const editNavigate = () => {
-      navigate(`/posts/${id}/edit`)
-    }
+      navigate(`/posts/${id}/edit`);
+    };
     return (
         <Container>
             {dataDB && (

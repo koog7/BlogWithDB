@@ -43,7 +43,7 @@ const FormSendler = () => {
 
     const onFormSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        if(PostData.title.trim() === '' && PostData.editorContent.trim() === ''){return}
+        if(PostData.title.trim() === '' && PostData.editorContent.trim() === ''){return;}
         const d = new Date();
         const currentDate = d.getFullYear() + '-' +
         ('0' + (d.getMonth() + 1)).slice(-2) + '-' +
@@ -71,7 +71,7 @@ const FormSendler = () => {
                 title: '',
                 editorContent: '',
                 date: '',
-            })
+            });
         }
     };
 

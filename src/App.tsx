@@ -1,4 +1,4 @@
-import './App.css'
+import './App.css';
 import {NavLink, Route, Routes} from "react-router-dom";
 import Add from "./container/Add.tsx";
 import Home from "./container/Home.tsx";
@@ -44,4 +44,4 @@ const App = () => {
     );
 };
 
-export default App
+export default App;

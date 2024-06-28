@@ -13,16 +13,15 @@ interface PostsResponse {
 }
 
 const Home = () => {
-    const [dataDB , setDataDB] = useState<PostsResponse >()
+    const [dataDB , setDataDB] = useState<PostsResponse >();
 
     useEffect(() => {
         axiosApi.get<PostsResponse >('/posts.json')
             .then(response => {
                 setDataDB(response.data);
-            })
+            });
     }, []);
 
-    console.log(dataDB)
     return (
         <Container>
                 {dataDB ? (
