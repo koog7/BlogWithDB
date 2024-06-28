@@ -1,6 +1,6 @@
 import axiosApi from "../axios/AxiosAPI.tsx";
 import {useEffect, useState} from "react";
-import {Card, CardContent, Container, Typography} from "@mui/material";
+import {Button, Card, CardContent, Container, Typography} from "@mui/material";
 import {NavLink} from "react-router-dom";
 interface Post {
     editorContent: string;
@@ -34,7 +34,7 @@ const Home = () => {
                                 <Typography gutterBottom variant="h4" component="div">
                                     {post.title}
                                 </Typography>
-                                <NavLink className={'readMore'} to={`/posts/${key}`}>Read more</NavLink>
+                                <NavLink to={`/posts/${key}`}><Button type={'submit'} variant="contained" style={{marginTop: '10px'}}>Read more</Button></NavLink>
                             </CardContent>
                         </Card>
                     ))
