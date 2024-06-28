@@ -15,15 +15,18 @@ const FormSendler = () => {
         editorContent: '',
         date: '',
     });
+    const [loader , setLoader] = useState(false)
     const navigate = useNavigate();
     const {id} = useParams();
 
     useEffect(() => {
         if (id) {
+            setLoader(true)
             axiosApi.get<Post>(`/posts/${id}.json`)
                 .then(response => {
                     setPostData(response.data);
                 });
+            setLoader(false)
         }else {
             setPostData({
                 title: '',
@@ -61,9 +64,13 @@ const FormSendler = () => {
 
         try {
             if (id) {
+                setLoader(true)
                 await axiosApi.put(`/posts/${id}.json`, postToSubmit);
+                setLoader(false)
             } else {
+                setLoader(true)
                 await axiosApi.post('/posts.json', postToSubmit);
+                setLoader(false)
             }
         } finally {
             navigate('/');
@@ -77,6 +84,9 @@ const FormSendler = () => {
 
     return (
         <div>
+            <div id="loader-container" style={{display: loader ? 'block' : 'none'}}>
+                <div className="loader"></div>
+            </div>
             <form onSubmit={onFormSubmit}>
                 <TextField
                     id="outlined-basic"
@@ -123,7 +133,8 @@ const FormSendler = () => {
                             removeformat | help'
                     }}
                 />
-                <Button type={'submit'} variant="contained" style={{marginTop: '10px'}}>{id ? 'Update!' : 'Send!'}</Button>
+                <Button type={'submit'} variant="contained"
+                        style={{marginTop: '10px'}}>{id ? 'Update!' : 'Send!'}</Button>
             </form>
         </div>
     );
