@@ -11,7 +11,7 @@ interface Post {
 
 const ReadMore = () => {
     const {id} = useParams();
-    const [dataDB , setDataDB] = useState<Post >()
+    const [dataDB , setDataDB] = useState<Post>()
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -20,15 +20,16 @@ const ReadMore = () => {
                 setDataDB(response.data);
             })
     }, [id]);
-    console.log(dataDB)
-    console.log(id)
-    
+
     const deletePost = async () => {
         try {
             await axiosApi.delete(`/posts/${id}.json`);
         } finally {
             navigate('/');
         }
+    }
+    const editNavigate = () => {
+      navigate(`/posts/${id}/edit`)
     }
     return (
         <Container>
@@ -47,7 +48,7 @@ const ReadMore = () => {
                             dangerouslySetInnerHTML={{ __html: dataDB.editorContent }}
                         />
                     </CardContent>
-                    <Button variant="contained" sx={{marginRight: '10px'}}>Edit</Button>
+                    <Button variant="contained" sx={{marginRight: '10px'}} onClick={editNavigate}>Edit</Button>
                     <Button variant="outlined" onClick={deletePost}>Delete!</Button>
                 </Card>
             )}
